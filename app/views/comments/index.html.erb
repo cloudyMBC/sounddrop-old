@@ -1,0 +1,17 @@
+<h1>Listing comments</h1>
+ 
+<table>
+  <tr>
+    <th>Text</th>
+  </tr>
+ 
+  <% @comments.each do |comment| %>
+    <tr>
+      <td><%= comment.text %></td>
+    </tr>
+  <% end %>
+</table>
+<br> </br>
+
+<%= button_to 'New Comment', new_comment_path, :class => "button", :method => :get %>
+<%= button_to 'Back to Soundfile', welcome_index_path, :class => "button", :method => :get %>

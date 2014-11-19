@@ -1,0 +1,7 @@
+<p>
+  <strong>Comment:</strong>
+  <%= @comment.text %>
+</p>
+
+<%= button_to 'See all Comments', comments_path, :class => "button", :method => :get %>
+<%= button_to 'Back to Soundfile', welcome_index_path, :class => "button", :method => :get %>
