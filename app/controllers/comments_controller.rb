@@ -6,15 +6,16 @@ class CommentsController < ApplicationController
 	  @comment = Comment.new(comment_params)
 	 
 	  @comment.save
-	  redirect_to @comment
+	  redirect_to comments_path #root_path 
 	end
 
 	def show
-  	@comment = Comment.find(params[:id])
+			@comments = Comment.all
+  		@comment = Comment.find(params[:id])
 	end
 
 	def index
-  	@comments = Comment.all
+  		@comments = Comment.all
 	end
 
 	private
