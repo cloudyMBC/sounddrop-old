@@ -1,0 +1,27 @@
+body {
+  background-color: black;
+  color: white;
+}
+
+h1 {
+  font-weight: 100;
+  letter-spacing: 1px;
+}
+
+.main {
+  font-family: "Helvetica Neue";
+}
+
+.comments {
+ 	font-family: fantasy;
+  color: white;
+}
+
+.list_comments {
+ 	font-family: fantasy;
+  color: white;
+}
+
+/*#hide_comments {
+	display: none
+}*/

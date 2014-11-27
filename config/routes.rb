@@ -3,8 +3,6 @@ Rails.application.routes.draw do
   root 'welcome#index'
   get 'welcome/index'
 
-  get 'comments' => 'comments#show'
-  get 'comments/index' => 'comments#index'
   post'comments' => 'comments#create'
 
   # The priority is based upon order of creation: first created -> highest priority.
