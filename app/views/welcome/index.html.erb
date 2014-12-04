@@ -12,23 +12,33 @@
 		    <%= f.text_area :text, :size=>"90%" %>
 		  </p>
 		  <p>
-		  <div class='container'>
-		    <%= f.submit%>
-		  </div>
+		  	<%= f.submit "Save Comment", :class=>"save_comment" %>
+		  <!-- <input name="commit" type="submit" value="Save Comment" id="btn"> -->
 		  </p>
 		<% end %>
 	</div>	
 
-	<div id='hide_comments' class='list_comments'>
-		<h3>Comments</h3>
-		<table>
-		 
-		  <% @comments.each do |comment| %>
-		    <tr>
-		      <td><%= comment.text %></td>
-		    </tr>
-		  <% end %>
-		</table>
+	<div id="hide_comments" class='list_comments'>
 	</div>
 </div>
 
+
+<script type="text/javascript">
+	$("#hide_comments").hide();
+   $(".save_comment").click(function(event) {
+   	event.preventDefault();
+   	$.ajax("/comments/index").done(function(comments) {
+   		$("#hide_comments").html(comments)
+   	})
+   $("#hide_comments").show();
+   });
+</script>
+
+
+
+<!-- $(document).on("ready page:load", function () {
+  $("#hide_comments").hide();
+ }); 
+$(document).on('click', function () {
+  $("#hide_comments").show();
+});  -->
