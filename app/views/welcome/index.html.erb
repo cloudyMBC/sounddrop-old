@@ -13,19 +13,18 @@
 		  </p>
 		  <p>
 		  	<%= f.submit "Save Comment", :id =>"save_comment" %>
-		  <!-- <input name="commit" type="submit" value="Save Comment" id="btn"> -->
 		  </p>
 		<% end %>
 	</div>	
 
-	<div id="comments" class='list_comments'>
+	<div id="hide_comments" class='list_comments'>
 	</div>
 </div>
 
 
 <script type="text/javascript">
  //This one is the promise
-  $("#comments").hide();
+  $("#hide_comments").hide();
   $("#commentForm").submit(function(event) {
     event.preventDefault();
 
@@ -35,7 +34,7 @@
       data: $("#commentForm").serialize(),
     }).done(function() {
       $.ajax('/comments/index').done(function(comments) {
-        $("#comments").html(comments).show();
+        $("#hide_comments").html(comments).show();
       });      
     });
   });
