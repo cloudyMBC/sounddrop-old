@@ -3,10 +3,10 @@
 
 	<%= image_tag("reception.jpg", :width => "90%", :height => 150, :alt => "Reception") %>
 
-	<iframe width="90%" height="20" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/159103322&amp;color=ff5500&amp;inverse=true&amp;auto_play=true&amp;show_user=false"></iframe>
+	<iframe width="90%" height="20" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/159103322&amp;color=ff5500&amp;inverse=true&amp;auto_play=false&amp;show_user=false"></iframe>
 
 	<div class='comments'>
-		<%= form_for :comment, url: comments_path do |f| %>
+		<%= form_for :comment, :html => {:id => "commentForm"}, url: comments_path do |f| %>
 		  <p>
 		    <%= f.label :text, "How do you like this app?" %><br>
 		    <%= f.text_area :text, :size=>"90%", :id => "new_comment"%>
@@ -18,21 +18,45 @@
 		<% end %>
 	</div>	
 
-	<div id="hide_comments" class='list_comments'>
+	<div id="comments" class='list_comments'>
 	</div>
 </div>
 
 
 <script type="text/javascript">
-	$("#hide_comments").hide();
-   $("#save_comment").click(function(event) {
-    $("#new_comment").type("POST").url("/comments/index");
-      event.preventDefault();
-   	$.ajax("/comments/index").done(function(comments) {
-   		$("#hide_comments").html(comments)
-   	});
-   	event.preventDefault();
-    $("#hide_comments").show();
-   });
+ //This one is the promise
+  $("#comments").hide();
+  $("#commentForm").submit(function(event) {
+    event.preventDefault();
+
+    $.ajax({
+      url: "/comments/",
+      type: "POST",
+      data: $("#commentForm").serialize(),
+    }).done(function() {
+      $.ajax('/comments/index').done(function(comments) {
+        $("#comments").html(comments).show();
+      });      
+    });
+  });
+
+
+  //This one is callback
+  // $("#comments").hide();
+  // $("#commentForm").submit(function(event) {
+  //   event.preventDefault();
+
+  //   $.ajax({
+  //     url: "/comments/",
+  //     type: "POST",
+  //     data: $("#commentForm").serialize(),
+  //     success: function() {
+  //       $.ajax('/comments/index').done(function(comments) {
+  //         $("#comments").html(comments).show();
+  //       });    
+  //     }
+  //   });
+  // });
+
 </script>
 
