@@ -1,16 +1,14 @@
 Rails.application.routes.draw do
-  #resources :comments
+
   root 'welcome#index'
   get 'welcome/index'
   get 'comments/index'
 
   post'comments' => 'comments#create'
-
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
-  #root 'welcome#index'
+ 
+  get '/stories/:current_track_id' => 'stories#show'
+  get '/playlists/:playlist_id/:current_track_id' => 'stories#playlists'
+  
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

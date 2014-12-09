@@ -1,6 +1,7 @@
 body {
   background-color: #1A0923;
   color: white;
+  font-family: "Helvetica Neue";
 }
 
 h1 {
@@ -25,3 +26,4 @@ h1 {
 /*#hide_comments {
 	display: none
 }*/
+
