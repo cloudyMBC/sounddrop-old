@@ -1,0 +1,37 @@
+<div class="artwork">
+  <img class="container-image" src="<%=@drop.image_from_track%>">
+  <%= render partial: "load_playbuttons" %>
+  <iframe width="570" height="570" frameborder="0" style="border:0; float:right;margin-left: auto;vertical-align:middle; pointer-events:none" src="https://www.google.com/maps/embed/v1/view?zoom=15&center=<%= google_map_parameter(@place) %>&key=AIzaSyBnrES8kMe2DiQqg0eF2YcYn7dAcJNPYEk"></iframe>
+</div>
+
+<div class="container-like-button">
+  <div id="likebutton" class="like"></br>
+    <%= button_to "like", upvote_drop_path(@drop), {form_class: "button-like", :id => "like_button", method: :post} %>
+  </div>
+  <div id="votes" class="vote">
+    <%= @drop.votes.count %>
+  </div>
+</div>
+
+<div class ="drop-title">
+  <p><%= @drop.title %></p>
+</div>
+
+<div class ="drop-description">
+  <p><%= @drop.soundcloud_track.description %></p>
+</div>
+
+<div class="drop-place">
+  Place : <%= @place.name %>
+  <br>
+  <%= show_place_location(@place) %>
+</div>
+
+<script>
+  var drop = {
+    id: <%= @drop.id %>
+  }
+  var dropAtSC = {
+     id: <%= @drop.soundcloud_track.id %>
+  }
+</script>
