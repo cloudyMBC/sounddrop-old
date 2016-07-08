@@ -6,13 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="/assets/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="/assets/bootstrap-theme.css">
-  <link rel="stylesheet" type="text/css" href="/assets/story.css">
+  <link rel="stylesheet" type="text/css" href="/assets/drop.css">
   <script src="http://connect.soundcloud.com/sdk.js"></script>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag "comments","upvote","play"%>
 
-  
   <!-- Site header and navigation -->
 
 </head>
@@ -32,16 +30,17 @@
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to 'QR codes', welcome_scan_path %></li>
-         <!--  <li> link_to "Create a SoundDrop", :controller => :connect, :action => :login_message </li> -->
+            <li><%= link_to 'Create SoundDrop', new_drop_path %></li>
           </ul>
         </div>
       </div>
     </nav>
   </header>
 
+  <div class='container'>
+    <%= yield %>
+  </div>
 
-  <%= yield %>
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -54,5 +53,3 @@
   <footer class=text-center><a href='http://soundcloud.com/imprint'><small>Imprint</small></a> | <a href='http://soundcloud.com/pages/privacy'><small>Privacy Policy</small></a></small></footer>
 </body>
 </html>
-
-

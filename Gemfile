@@ -1,9 +1,11 @@
 source 'https://rubygems.org'
 
-ruby '2.1.3'
+ruby '2.2.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.1'
+gem 'rails', '4.2.3'
+
+gem 'dotenv-rails', :require => 'dotenv/rails-now', :groups => [:development, :test]
 
 gem 'soundcloud'
 
@@ -28,6 +30,8 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+gem 'geocoder'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -41,13 +45,17 @@ group :production do
   gem 'mysql'
 end
 
+group :test do
+  gem 'shoulda-matchers', require: false
+end
+
 group :development, :test do
-  gem 'capybara'
   gem 'pry'
   gem 'pry-byebug'
   gem 'rspec'
   gem 'rspec-rails'
   gem 'selenium-webdriver'
+  gem 'factory_girl_rails'
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -57,5 +65,14 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  gem 'foreman'
+end
+
+group :test do
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'webmock'
+  gem 'vcr'
 end
 
