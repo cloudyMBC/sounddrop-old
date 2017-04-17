@@ -5,21 +5,19 @@ Rails.application.routes.draw do
   #get 'welcome/index'
 
   root 'welcome#index'
+
   get 'welcome/index'
   get 'welcome/scan'
-  get 'comments/index'
-  
 
-  post'comments' => 'comments#create'
-  resources :stories do
+  resources :drops do
     member do
       post 'upvote'
     end
   end
 
-  # get '/stories/:sc_track' => 'stories#show', :as => "sc_track"
-  get '/playlists/:playlist_id/:sc_track' => 'stories#playlists'
-  
+  # get '/drops/:sc_track' => 'drops#show', :as => "sc_track"
+  get '/playlists/:playlist_id/:sc_track' => 'drops#playlists'
+
   get '/stats' => 'charts#stats', :as => 'stats'
   get '/charts' => 'charts#charts', :as => 'charts_json'
   get '/login' => 'connect#login'
@@ -31,7 +29,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -1,0 +1,23 @@
+<h1>Hello, <%= @current_user.username %></h1>
+<p></br>
+<p><h4>Create your own Sounddrop</h4>
+
+
+<%= form_for @drop, url: drops_path do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <%= label_tag(:sc_url, "Enter a Soundcloud url:") %>
+  <%= text_field_tag(:sc_url) %>
+  </br><p></br>
+  <%= label_tag(:sc_track, "OR choose from your tracks:") %>
+  <h4>You have <%= @current_user.track_count %> tracks at SoundCloud:</h4>
+  <%= select(:drop, :sc_track, options_for_select(@current_user_tracks.map { |t| [t.title, t.id]}), :include_blank => true) %>
+  </br><p></br>
+
+  <%= f.fields_for :place do |ff| %>
+    <%= ff.label(:name, "name a place:") %>
+    <%= ff.text_field(:name)%>
+  <% end %>
+
+  </br><p></br>
+  <%= submit_tag("Save") %>
+<% end %>

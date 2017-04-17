@@ -5,7 +5,7 @@ require 'pry'
 
 describe "Playlist page" , type: :feature do
 
-  it 'has a navigation bar' do 
+  it 'has a navigation bar' do
     visit "/playlists/74584890/187472038"
     expect(page).to have_css("img[src*='/assets/sounddrop-logo-name.png']")
   end
@@ -23,14 +23,14 @@ describe "Playlist page" , type: :feature do
   #     expect(page).to have_selector("play-button")
   #    end
   # end
-  
-  it "displays list of stories" do
+
+  it "displays list of drops" do
     visit "/playlists/74584890/187472038"
     expect(find_link("Brewing coffee for engineers")).to be_visible
     expect(find_link("Coffee Machine")).to be_visible
   end
-   
-  it "displays story title ", :js => true do 
+
+  it "displays drop title ", :js => true do
     visit "/playlists/74584890/187472038"
     expect(page).to have_content("Art installation")
   end
@@ -39,25 +39,18 @@ describe "Playlist page" , type: :feature do
     visit "/playlists/74584890/187472172"
     expect(page).to have_content "@SoundCloud HQ"
   end
-   
+
   it "has a form for comments" do
     visit "/playlists/74584890/187471639"
     expect(page).to have_selector("form")
   end
-   
+
   it "has a button to save the comments" do
     visit "/playlists/74584890/187471639"
     expect(page).to have_selector("input")
   end
 
-  scenario "writing a comment and sending it saves the comment and shows it on page", js: true do
-    visit "/playlists/74584890/187471639"
-    fill_in "new_comment", with: "Test comment"
-    click_button "Send Comment"
-    expect(page).to have_content("Test comment")
-  end
-
-  scenario "klicking the like button increases the likes of a story", js: true do
+  scenario "clicking the like button increases the likes of a drop", js: true do
     visit "/playlists/74584890/187472038"
     likes_before = page.find("#votes").text.to_i
     click_button "like"
